@@ -1,0 +1,524 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    background-color: #8A9A5B; /* Fixed sage green background */
+    color: white; /* Fixed white text */
+}
+
+/* Portfolio Container */
+.portfolio-container {
+    display: flex;
+    height: 100vh;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth; /* Smooth scroll */
+    width: 100vw;
+    position: relative;
+}
+
+/* Contact Button Styling */
+.contact-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #b192bf;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10; /* Make sure it stays on top */
+}
+
+.contact-button:hover {
+    background-color: #b192bf; /* Darker green on hover */
+}
+
+/* Modal Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 11; /* Above other content */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+}
+
+.modal-content {
+    color: black;
+    background-color: #c4c4c4;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Close Button Styling */
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: black;
+}
+
+/* Slide Styling */
+.slide {
+    min-width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;  /* Keep other slides centered */
+    align-items: center;      /* Keep other slides centered vertically */
+    flex-direction: column;
+    font-size: 2rem;
+    background-color: #8A9A5B; /* Ensure sage green background for each slide */
+    color: white; /* Ensure white text */
+    position: relative;
+}
+
+/* Navigation Dots */
+.navigation-dots {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: none; /* No transition effect */
+}
+
+.dot.active {
+    background-color: white;
+}
+
+/* Calculator Slide Title Styling */
+.calculator-title {
+    position: absolute;     /* Position relative to the slide */
+    top: 10%;               /* Adjust this to control how far from the top */
+    left: 7.5%;             /* Adjust this to control how far from the left */
+    font-size: 3rem;        /* Increased font size */
+    text-align: left;
+    z-index: 3;             /* Ensure title stays on top of other elements */
+}
+
+/* Specific Calculator Styling */
+.calculator {
+    position: absolute;          /* Enable manual positioning */
+    top: 50%;                    /* Position vertically in the middle of the slide */
+    right: 10%;                   /* 5% from the right edge of the slide */
+    transform: translateY(-50%); /* Center vertically */
+    width: 320px;
+    background-color: black;     /* Black background for the calculator */
+    padding: 20px;
+    border-radius: 15px;         /* Rounded corners */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Shadow for 3D effect */
+    z-index: 2;                  /* Make sure calculator is on top and buttons are clickable */
+}
+
+/* Display for Calculator */
+#display {
+    height: 50px;
+    background: #222; /* Dark background for display */
+    color: white; /* White text for display */
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: right; /* Right-align the numbers */
+    padding-right: 15px; /* Padding on the right for spacing */
+    line-height: 50px;
+    border-radius: 10px;
+}
+
+/* Buttons Container */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 buttons per row */
+    gap: 15px; 
+}
+
+/* Button Styles */
+button {
+    height: 60px;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 50%; 
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s; /* Smooth hover and click animations */
+}
+
+/* Number Buttons */
+.number-button {
+    background-color: white; 
+    color: black; 
+}
+
+/* Operator Buttons */
+.operator-button {
+    background-color: purple; 
+    color: white; 
+}
+
+/* Button Hover Effect */
+button:hover {
+    opacity: 0.9; /* Slight transparency on hover */
+}
+
+/* Button Active Effect */
+button:active {
+    transform: scale(0.95); /* Slightly shrink when pressed */
+}
+
+/* BMI Calculator Styles */
+.bmi-title {
+    position: absolute;
+    top: 10%;
+    left: 7.5%;
+    font-size: 3rem;
+    text-align: left;
+    z-index: 3;
+}
+
+#bmi-canvas {
+    position: absolute;          /* Enable manual positioning for the canvas */
+    top: 35%;                    /* Adjust the vertical position as needed */
+    left: 60%;                   /* Adjust the horizontal position as needed */
+    transform: translate(-50%, -50%); /* Optional: Center the canvas relative to itself */
+    margin-top: 20px;
+    background-color: #8A9A5B;
+}
+
+label[for="height"],
+label[for="weight"] {
+    font-size: 1rem;  /* Smaller font size for labels */
+    margin-bottom: 2.5px; /* Space below the label */
+}
+
+/* Update BMI Calculator Form Styles */
+#bmi-form {
+    display: flex;                /* Flexbox for layout control */
+    position: absolute;           /* Enable manual positioning */
+    top: 25%;                     /* Adjust vertical distance from the top */
+    left: 5%;                     /* Move to 5% from the left side of the screen */
+    flex-direction: column;       /* Arrange form elements vertically */
+    gap: 15px;                    /* Space between form elements */
+    margin-bottom: 20px;          /* Space below the form */
+    width: 40%;                   /* Adjusted width to make it fit better on the left */
+    align-items: flex-start;      /* Align items to the start (left) */
+}
+
+/* Update Input Fields Styles */
+#bmi-form input[type="number"] {
+    width: 40%;                   /* Set input width to 80% of the form width */
+    padding: 10px;                /* Add padding for better spacing inside input fields */
+    font-size: 1.2rem;            /* Larger text for readability */
+    border: 1px solid #ccc;       /* Light border around inputs */
+    border-radius: 5px;           /* Rounded corners */
+}
+
+/* Update Button Styles */
+#bmi-form button {
+    width: 20%;                   /* Set button width to 50% of form width */
+    padding: 10px;                /* Add padding for better clickability */
+    font-size: 1.2rem;            /* Larger text for readability */
+    border: none;                 /* Remove default button border */
+    border-radius: 10px;          /* Rounded corners for buttons */
+    background-color: #259228;    /* Green color for the button */
+    color: white;                 /* White text color for contrast */
+    cursor: pointer;              /* Change cursor to pointer on hover */
+    transition: background-color 0.3s, transform 0.1s; /* Smooth hover and click animations */
+}
+
+/* Button Hover and Active Effect */
+#bmi-form button:hover {
+    background-color: #45a049;    /* Darker green on hover */
+}
+
+#bmi-form button:active {
+    transform: scale(0.95);       /* Slightly shrink the button on click */
+}
+
+#bmi-result-display {
+    position: absolute;          /* Use absolute positioning to precisely place it */
+    top: 50%;                    /* Adjust to set the vertical position */
+    left: 75%;                   /* Adjust to set the horizontal position */
+    transform: translateY(-50%); /* Optional: Center it vertically relative to itself */
+    font-size: 1.5rem;           /* Font size of the result */
+    color: black;                /* Color of the result text */
+    margin-bottom: 15px;         /* Space below the result */
+    z-index: 3;                  /* Ensure it stays above other elements */
+}
+
+/*Description text for projects*/
+.description-text {
+    position: absolute; /* Changed from absolute to relative */
+    font-size: 1.2rem;
+    color: white;
+    line-height: 1.5;
+}
+
+/* Specific Positioning for the BMI Calculator Description */
+#bmi-description {
+    top: 55%;            /* Adjust top position as needed */
+    left: 30%;           /* Adjust left position as needed */
+    width: 60%;          /* Adjust width as needed */
+}
+
+#calculator-description {
+    top: 20%;           /* Add space below the title */
+    left:10%;
+    width: 50%;         /* Adjust as needed for description size */
+}
+
+#quantumC-description {
+    top: 20%;           /* Add space below the title */
+    left:10%;
+    width: 80%;         /* Adjust as needed for description size */
+}
+
+#ancientEgy-description {
+    top: 25%;           /* Add space below the title */
+    left:50%;
+    width: 45%;         /* Adjust as needed for description size */
+}
+
+#HBxFC-description {
+    top: 25%;           /* Add space below the title */
+    left:10%;
+    width: 45%;         /* Adjust as needed for description size */
+}
+
+#cactusNFT-description{
+    top: 30%;           /* Add space below the title */
+    left:50%;
+    width: 45%;         /* Adjust as needed for description size */
+}
+
+/* BMI Calculator Styles */
+.quantumC-title {
+    position: absolute;
+    top: 10%;
+    left: 7.5%;
+    font-size: 3rem;
+    text-align: left;
+    z-index: 3;
+}
+
+/* Project Button Styling */
+.quantumC-button {
+    position: absolute;              /* Use absolute positioning for precise placement */
+    top: 60%;                        /* Adjust to control vertical position */
+    left: 37.5%;                       /* Adjust to control horizontal position */
+    padding: 15px 30px;              /* Add padding for better clickability */
+    font-size: 1.2rem;               /* Increase font size for readability */
+    color: white;                    /* White text color */
+    background-color: #224323;       /* Green background */
+    border: none;                    /* Remove default border */
+    border-radius: 10px;             /* Rounded corners */
+    cursor: pointer;                 /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.1s; /* Smooth hover effect */
+}
+
+.quantumC-button:hover {
+    background-color: #367439;       /* Darker green on hover */
+}
+
+.quantumC-button:active {
+    transform: scale(0.95);          /* Slightly shrink button when pressed */
+}
+
+/* Project Image Styling */
+.ancientEgy-image {
+    top: 20%;
+    width: 30%;                   /* Set width to 60% of the container (adjust as needed) */
+    position: absolute;              /* Use absolute positioning for precise placement */
+    left: 10%;                       /* Adjust to control horizontal position */
+    height: auto;                 /* Maintain aspect ratio */
+    margin-top: 20px;             /* Add some space above the image */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Add a shadow for better visual effect */
+}
+
+/* BMI Calculator Styles */
+.ancientEgy-title {
+    position: absolute;
+    top: 10%;
+    left: 7.5%;
+    font-size: 3rem;
+    text-align: left;
+    z-index: 3;
+}
+
+/* Project Image Styling */
+.HBxFC-image {
+    top: 17.5%;
+    width: 30%;                   /* Set width to 60% of the container (adjust as needed) */
+    position: absolute;              /* Use absolute positioning for precise placement */
+    left: 65%;                       /* Adjust to control horizontal position */
+    height: auto;                 /* Maintain aspect ratio */
+    margin-top: 20px;             /* Add some space above the image */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Add a shadow for better visual effect */
+}
+
+/* BMI Calculator Styles */
+.HBxFC-title {
+    position: absolute;
+    top: 10%;
+    left: 7.5%;
+    font-size: 3rem;
+    text-align: left;
+    z-index: 3;
+}
+
+/* Frog Game Specific Body Styling */
+.frog-body {
+    padding: 0;
+    margin: 0;
+    display: grid; /* Set up the grid and justify/align to center */
+    justify-content: center;
+    align-content: center;
+    height: 100vh; /* Body is the height of the viewport */
+    overflow: hidden; /* Hide anything that goes off the window size */
+}
+
+/* General Slide Title Styling */
+.frog-title {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    font-size: 3rem;
+    color: white;
+    text-align: left;
+}
+
+/* Description text for the frog game */
+.frog-description-text {
+    position: absolute;
+    top: 80%; /* Position below the title */
+    left: 22.5%;
+    width: 90%; /* Adjust as needed */
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: white;
+}
+
+/* Style for the frog game container */
+#frog-game-container {
+    position: absolute;
+    top: 50%;      /* Adjust this value to move the game up or down */
+    left: 50%;     /* Adjust this value to move the game left or right */
+    transform: translate(-50%, -50%); /* Centers the container */
+    width: 640px;  /* Set the width to match your canvas size */
+    height: 480px; /* Set the height to match your canvas size */
+    z-index: 1;    /* Ensure it displays above other elements if necessary */
+}
+  
+  /* Ensure the canvas fills the container */
+#frog-game-container canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Slide Title Styling */
+.selfportrait-title {
+    position: absolute;
+    top: 10%;
+    left: 7.5%;
+    font-size: 3rem;
+    text-align: left;
+    z-index: 3;
+}
+
+/* Image Carousel Container */
+.image-carousel-container {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    height: auto;
+    margin: 0 auto; /* Center the carousel horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Carousel Image */
+.carousel-image {
+    width: 100%; /* Image should take up the full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Make sure the image fits properly in the container */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition when changing the image */
+}
+
+/* Carousel Buttons */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-20%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-button.left {
+    left: -20px;
+}
+
+.carousel-button.right {
+    right: -20px;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Video Slide Title Styling */
+.video-title {
+    position: absolute;
+    top: 10%;
+    left: 7.5%;
+    font-size: 3rem;
+    text-align: left;
+    z-index: 3;
+}
+
+/* Video Styling */
+.project-video {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    width: 30%;
+    height: auto;
+    border-radius: 5px; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); 
+    float: right; 
+    margin-left: 20px; 
+}
